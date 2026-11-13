@@ -1,0 +1,54 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v2
+
+    - name: Install Cordova
+      run: npm install -g cordova
+
+    - name: Create Cordova Project
+      run: |
+        cordova create build com.pvz.vn CayVsZombie
+        cp config.xml build/config.xml
+        rm -rf build/www/*
+        cp -r . build/www/ || true
+        # Xóa các file rác để tránh lỗi vòng lặp
+        rm -rf build/www/.github
+        rm -rf build/www/build
+        
+        cd build
+        cordova platform add android
+
+    - name: Build APK
+      run: |
+        cd build
+        cordova build android
+
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: CayVsZombie-APK
+        path: build/platforms/android/app/build/outputs/apk/debug/app-debug.apk
