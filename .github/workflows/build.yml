@@ -24,7 +24,11 @@ jobs:
         java-version: '17'
 
     - name: Setup Android SDK
-      uses: android-actions/setup-android@v3.2.1 # Nâng cấp lên bản mới nhất để sửa lỗi
+      uses: android-actions/setup-android@v3.2.1
+      with:
+        # Dòng này cực kỳ quan trọng: Chỉ định rõ các gói cần tải, bỏ qua gói 'tools' bị lỗi
+        packages: 'platform-tools'
+        log-accepted-android-sdk-licenses: false
 
     - name: Install Cordova
       run: npm install -g cordova
@@ -35,7 +39,6 @@ jobs:
         if [ -f config.xml ]; then cp config.xml build/config.xml; fi
         rm -rf build/www/*
         cp -r . build/www/ || true
-        # Xóa các thư mục ẩn rác để tránh lỗi copy vòng lặp
         rm -rf build/www/.github
         rm -rf build/www/build
         cd build
