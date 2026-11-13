@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.pvz.vn" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Cây vs Zombie</name>
+    <description>Game Tower Defense</description>
+    <author email="dev@example.com" href="https://github.com">Your Name</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    
+    <!-- Chỉnh app chạy toàn màn hình và xoay ngang -->
+    <preference name="Fullscreen" value="true" />
+    <preference name="Orientation" value="landscape" />
+    
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <!-- Bạn có thể thêm icon tại đây nếu muốn -->
+    </platform>
+</widget>
