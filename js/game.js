@@ -194,8 +194,8 @@
     sunflower: {
       name: 'Hướng Dương', key: 'sunflower_idle', produceKey: 'sunflower_produce',
       reactKey: 'sunflower_react', cost: 50, hp: 300, cooldown: 7.5,
-      h: 116, portrait: 54, color: '#ffd84a', desc: 'Cứ 22 giây tạo ra 25 ánh sáng',
-      first: 6, interval: 22
+      h: 116, portrait: 54, color: '#ffd84a', desc: 'Cứ 10 giây tạo ra 25 ánh sáng',
+      first: 6, interval: 10
     },
     peashooter: {
       name: 'Cây Bắn Đậu', key: 'peashooter_idle', atkKey: 'peashooter_attack',
@@ -1497,7 +1497,7 @@
     G.sunTimer -= dt;
     if (G.sunTimer <= 0) {
       spawnSkySun();
-      G.sunTimer = 8 + Math.random() * 2.5;
+      G.sunTimer = 3 + Math.random() * 2.5;
     }
 
     var waves = G.levelCfg.waves;
